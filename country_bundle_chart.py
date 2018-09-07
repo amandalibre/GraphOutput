@@ -17,7 +17,7 @@ def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_
     chart.add_series({
         'categories' : '=Sheet' + str(worksheet_number) + '!$A$' + str(bundle * 3) + ':$A$' + str(bundle * 3 + len(sorted_dict) - 1),
         'values': '=Sheet' + str(worksheet_number) + '!$B$' + str(bundle * 3) + ':$B$' + str(bundle * 3 + len(sorted_dict) - 1),
-        'fill': {'color': 'blue'},
+        'fill': {'color': '#0070C0'},
         'data_labels': {
             'value': True,
             'font': {
@@ -40,7 +40,7 @@ def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_
         }
     })
     chart.set_x_axis({
-        'name': 'Country'
+        'name': 'Operator'
     })
     chart.set_legend({'none': True})
     chart.set_size({'width': 480, 'height': 250})
