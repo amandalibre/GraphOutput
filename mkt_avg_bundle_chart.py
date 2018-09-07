@@ -17,7 +17,13 @@ def generate_mkt_avg_bundle_chart(worksheet, workbook, sorted_dict, chart_title)
     chart.add_series({
         'categories' : '=Sheet1!$A$2:$A$6',
         'values': '=Sheet1!$B$2:$B$6',
-        'fill': {'color': 'blue'}
+        'fill': {'color': 'blue'},
+        'data_labels': {
+            'value': True,
+            'font': {
+                'bold': True
+            }
+        }
     })
     chart.set_title({'none': True})
     chart.set_y_axis({

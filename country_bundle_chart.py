@@ -6,8 +6,8 @@ def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_
     for entry in sorted_dict:
         data.append([[key, float(value)] for key, value in entry.items()])
 
-    worksheet.write_row('A1', headings)
-    row = 2
+    worksheet.write_row('A' + str(3 * bundle -1), headings)
+    row = 3 * bundle
     for entry in data:
         worksheet.write_row('A' + str(row), entry[0])
         row += 1
@@ -15,18 +15,35 @@ def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_
     # create bar chart
     chart = workbook.add_chart({'type': 'column'})
     chart.add_series({
-        'categories' : '=Sheet' + str(worksheet_number) + '!$A$2:$A$' + str(len(sorted_dict) + 1),
-        'values': '=Sheet' + str(worksheet_number) + '!$B$2:$B$' + str(len(sorted_dict) + 1),
+        'categories' : '=Sheet' + str(worksheet_number) + '!$A$' + str(bundle * 3) + ':$A$' + str(bundle * 3 + len(sorted_dict) - 1),
+        'values': '=Sheet' + str(worksheet_number) + '!$B$' + str(bundle * 3) + ':$B$' + str(bundle * 3 + len(sorted_dict) - 1),
         'fill': {'color': 'blue'},
-        'data_labels': {'value': True},
+        'data_labels': {
+            'value': True,
+            'font': {
+                'bold': True
+            }
+        }
     })
-    chart.set_title({'name': str(bundle) + ' GB Bundle by Provider'})
+    chart.set_title({
+        'name': str(bundle) + ' GB Bundle by Provider',
+        'name_font': {
+            'bold': True,
+            'size': 16
+        }
+    })
     chart.set_y_axis({
         'name': 'Effective Price Per GB (USD)',
-        'num_format': '$#,##0.00'})
-    chart.set_x_axis({'name': 'Country'})
+        'num_format': '$#,##0.00',
+        'name_font': {
+            'size': 9
+        }
+    })
+    chart.set_x_axis({
+        'name': 'Country'
+    })
     chart.set_legend({'none': True})
-    chart.set_size({'width': 480, 'height': 240})
+    chart.set_size({'width': 480, 'height': 250})
 
     # insert chart
-    worksheet.insert_chart('D2', chart)
+    worksheet.insert_chart('D' + str(bundle * 3), chart)
