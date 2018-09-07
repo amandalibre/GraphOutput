@@ -1,4 +1,7 @@
-def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_dict, bundle):
+def generate_country_bundle_chart(country, worksheet, worksheet_number, workbook, sorted_dict, bundle):
+
+    # add title
+    worksheet.write_row('A1', country)
 
     # add data
     headings = ["Country", "Effective Price Per GB (USD)"]
