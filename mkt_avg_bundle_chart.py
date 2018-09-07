@@ -28,8 +28,17 @@ def generate_mkt_avg_bundle_chart(worksheet, workbook, sorted_dict, chart_title)
     chart.set_title({'none': True})
     chart.set_y_axis({
         'name': 'Effective Price Per GB (USD)',
-        'num_format': '$#,##0.00'})
-    chart.set_x_axis({'name': 'Country'})
+        'num_format': '$#,##0.00',
+        'major_gridlines': {
+            'visible': True,
+            'line': {
+                'color': '#D9D9D9'
+            }
+        }
+    })
+    chart.set_x_axis({
+        'name': 'Country',
+    })
     chart.set_legend({'none': True})
     chart.set_size({'width': 624, 'height': 384})
 

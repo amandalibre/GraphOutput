@@ -37,10 +37,16 @@ def generate_country_bundle_chart(worksheet, worksheet_number, workbook, sorted_
         'num_format': '$#,##0.00',
         'name_font': {
             'size': 9
+        },
+        'major_gridlines': {
+            'visible': True,
+            'line': {
+                'color': '#D9D9D9'
+            }
         }
     })
     chart.set_x_axis({
-        'name': 'Operator'
+        'name': 'Operator',
     })
     chart.set_legend({'none': True})
     chart.set_size({'width': 480, 'height': 250})
